@@ -10,8 +10,8 @@ pipeline:
       properties:
         ci:
           codebase:
-            connectorRef: <+input>
-            repoName: <+input>
+            connectorRef: account.suranc_GitHub_App_Account_Level
+            repoName: example-harness-app-1
             build: <+input>
       stages:
         - stage:
@@ -21,15 +21,15 @@ pipeline:
               infrastructure:
                 type: KubernetesDirect
                 spec:
-                  connectorRef: <+input>
-                  namespace: <+input>
+                  connectorRef: account.sacluster
+                  namespace: test
               execution:
                 steps:
                   - step:
                       identifier: Build_Image
                       type: BuildAndPushDockerRegistry
                       spec:
-                        connectorRef: <+input>
+                        connectorRef: account.DockerHub_Account_Level_Connect_Through_Platform
         - stage:
             identifier: Deploy_to_Test
             type: Deployment
